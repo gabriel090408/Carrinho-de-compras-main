@@ -26,3 +26,4 @@ function criarMain () {
      body.append(main) 
 }
 criarMain()
+const ul = document.querySelector('ul')
