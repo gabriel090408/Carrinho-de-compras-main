@@ -62,30 +62,58 @@ function criarprodutos () {
     }) 
 }
 criarprodutos()
-
+const carrinho_produtos = []
 function adicionarCarrinho (produto) {
-    const carrinho = document.querySelector('#carrinho')
-    const img = document.createElement("img")
-    img.src = produto.imagem
-   
-    const preco = document.createElement('preco')
-    preco.innerText = produto.preco
-
-    const h4 = document.createElement('h4')
-    h4.innerText = produto.nome
     
-    const pSoma = document.createElement ('pSoma')
-        
-
-
-
-
-    carrinho.append(img, preco, h4, total)
-
-
-   
-    console.log(produto)
-
-   
+    const findItem = carrinho_produtos.find((item)=>item.id===produto.id)
+    if(findItem){
+        findItem.qtd++
+    }else{
+        produto.qtd = 1
+        carrinho_produtos.push(produto)
+    }
+   montarCarrinho()
  
 }    
+function montarCarrinho(){
+    const carrinho = document.querySelector('#carrinho')
+    carrinho.innerHTML = ""
+
+    carrinho_produtos.forEach((produto)=>{
+        const img = document.createElement("img")
+        img.src = produto.imagem
+    
+        const pqtd = document.createElement("p")
+        pqtd.innerText = produto.qtd
+
+        const preco = document.createElement('preco')
+        preco.innerText = produto.preco
+
+        const h4 = document.createElement('h4')
+        h4.innerText = produto.nome
+
+        carrinho.append(img,pqtd, preco, h4, )
+    })
+
+
+    let total = 0
+     carrinho_produtos.forEach((produto)=> {
+        const numero = Number.parseFloat(produto.preco.replace(",",'.'))*produto.qtd
+    
+        total += numero
+
+
+        
+        
+       
+        
+        
+    })
+     const p = document.createElement ('p')
+        p.innerText = `Total: R$ ${total}`
+        
+        carrinho.append(p)
+    //exibeTotal(total)
+
+}
+//function exibeTotal(valor){
