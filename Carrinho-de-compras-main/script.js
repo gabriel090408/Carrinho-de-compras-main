@@ -82,17 +82,17 @@ function montarCarrinho(){
     carrinho_produtos.forEach((produto)=>{
         const img = document.createElement("img")
         img.src = produto.imagem
-    
+        
+        const preco = document.createElement('preco')
+        //preco.innerText = produto.preco
+        
         const pqtd = document.createElement("p")
         pqtd.innerText = produto.qtd
-
-        const preco = document.createElement('preco')
-        preco.innerText = produto.preco
 
         const h4 = document.createElement('h4')
         h4.innerText = produto.nome
 
-        carrinho.append(img,pqtd, preco, h4, )
+        carrinho.append(img,preco,pqtd,h4)
     })
 
 
@@ -102,18 +102,20 @@ function montarCarrinho(){
     
         total += numero
 
-
         
         
-       
         
         
+        
+        
+    
     })
-     const p = document.createElement ('p')
-        p.innerText = `Total: R$ ${total}`
-        
-        carrinho.append(p)
-    //exibeTotal(total)
-
+    const p = document.createElement ('p')
+    p.innerText = `Total: R$ ${total}`
+    
+    carrinho.append(p)
+    
+    
+    
 }
-//function exibeTotal(valor){
+
